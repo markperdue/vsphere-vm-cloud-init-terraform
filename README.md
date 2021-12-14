@@ -1,6 +1,8 @@
 # Overview
 A terraform plan that spins up virtual machines on an ESXi host using vCenter. This repo is organized for the use case of spinning up and down VMs within their own unique terraform workspace with the goal to simplify onboarding and offloading of virtual machines.
 
+The main use case of this repo surrounds spinning up Kubernetes virtual machines to be later configured by Ansible playbooks.
+
 
 # Features
 - uses the new [VMWare datasource](https://cloudinit.readthedocs.io/en/latest/topics/datasources/vmware.html) built into cloud-init version 21.3 and later
@@ -22,7 +24,7 @@ A terraform plan that spins up virtual machines on an ESXi host using vCenter. T
 
 # Guide
 1. Install ESXI
-2. [Install vCenter on ESXi](#install-vcenter-on-esxi-(abridged))
+2. [Install vCenter on ESXi](#install-vcenter-on-esxi-abridged)
 3. [Create DNS record for vCenter](#create-dns-record-for-vcenter)
 4. [Create OVF template for vCenter](#create-ovf-template-for-vcenter)
 5. [Run terraform plan](#quickstart)
@@ -110,7 +112,6 @@ PING vcsa-01.lab (192.168.2.2) 56(84) bytes of data.
 
 
 # Create OVF template for vCenter
-
 Download Ubuntu OVA image from https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.ova
 
 ## Update VMWare Template to properly support virtual machine `extraConfig`
