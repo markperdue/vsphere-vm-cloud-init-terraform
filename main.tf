@@ -49,14 +49,17 @@ resource vsphere_virtual_machine "vm" {
   # uses vmware datasource which requires cloud-init >= 21.3
   # https://cloudinit.readthedocs.io/en/latest/topics/datasources/vmware.html
   extra_config = {
-    "guestinfo.metadata"          = base64encode(templatefile("${path.module}/assets/metadata.yaml", {
+    "guestinfo.metadata"          = base64encode(templatefile("${path.module}/examples/metadata.tftpl", {
                                       ip           = var.virtual_machines[count.index].ip,
                                       gateway      = var.virtual_machines[count.index].gateway,
                                       nameserver_1 = var.virtual_machines[count.index].nameserver_1
                                     }))
     "guestinfo.metadata.encoding" = "base64"
-    "guestinfo.userdata"          = base64encode(templatefile("${path.module}/assets/userdata.yaml", {
-                                      fqdn = var.virtual_machines[count.index].fqdn
+    "guestinfo.userdata"          = base64encode(templatefile("${path.module}/${var.userdata_file}", {
+                                      fqdn               = var.virtual_machines[count.index].fqdn,
+                                      user               = var.vm_user,
+                                      group              = var.vm_group,
+                                      ssh_authorized_key = var.ssh_authorized_key
                                     }))
     "guestinfo.userdata.encoding" = "base64"
   }

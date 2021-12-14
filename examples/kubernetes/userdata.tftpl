@@ -1,0 +1,37 @@
+#cloud-config
+#for details see https://cloudinit.readthedocs.io/en/latest/topics/modules.html
+
+users:
+    - default
+    - name: ${user}
+      primary_group: ${group}
+      groups: sudo, users, admin
+      lock_passwd: true
+      shell: /bin/bash
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      ssh_authorized_keys:
+        - ${ssh_authorized_key}
+ssh_pwauth: yes
+random_seed:
+    file: /dev/urandom
+    command: ["pollinate", "-r", "-s", "https://entropy.ubuntu.com"]
+    command_required: true
+hostname: ${fqdn}
+manage_etc_hosts: true
+package_update: true
+package_upgrade: true
+device_aliases:
+    ephemeral0: /dev/sdb
+disk_setup:
+    ephemeral0:
+        table_type: gpt
+        layout: true
+        overwrite: true
+fs_setup:
+    - label: ephemeral0
+      filesystem: ext4
+      device: ephemeral0.1
+mounts:
+    - [ ephemeral0.1, /var/lib/longhorn, ext4, "defaults,nofail", 0, 0 ]
+runcmd:
+    - [ chown, -R, ${user}:${group}, /var/lib/longhorn ]

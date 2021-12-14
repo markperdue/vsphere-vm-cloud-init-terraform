@@ -38,6 +38,26 @@ variable vm_template_name {
   type        = string
 }
 
+variable vm_user {
+  description = "The default user to create in the vm."
+  type        = string
+}
+
+variable vm_group {
+  description = "The default group for the user in the vm."
+  type        = string
+}
+
+variable ssh_authorized_key {
+  description = "A ssh authorized key entry to add to the vm."
+  type        = string
+}
+
+variable userdata_file {
+  description = "Relative path from root to the userdata template file to use."
+  type        = string
+}
+
 variable "virtual_machines" {
   type = list(object({
     fqdn         = string,
