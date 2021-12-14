@@ -1,0 +1,13 @@
+#for details see https://cloudinit.readthedocs.io/en/latest/topics/instancedata.html
+
+network:
+  version: 2
+  ethernets:
+    ens192:
+      addresses:
+        - ${ip}
+      gateway4: ${gateway}
+      nameservers:
+        addresses:
+          - ${nameserver_1}
+          - 1.1.1.1
