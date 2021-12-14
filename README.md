@@ -24,7 +24,7 @@ The main use case of this repo surrounds spinning up Kubernetes virtual machines
 
 # Guide
 1. Install ESXI
-2. [Install vCenter on ESXi](#install-vcenter-on-esxi-abridged)
+2. [Installing vCenter on ESXi](#installing-vcenter-on-esxi-abridged)
 3. [Create DNS record for vCenter](#create-dns-record-for-vcenter)
 4. [Create OVF template for vCenter](#create-ovf-template-for-vcenter)
 5. [Run terraform plan](#quickstart)
