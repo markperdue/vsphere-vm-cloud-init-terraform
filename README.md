@@ -112,7 +112,9 @@ PING vcsa-01.lab (192.168.2.2) 56(84) bytes of data.
 
 
 # Create OVF template for vCenter
-Download Ubuntu OVA image from https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.ova
+Download the released Ubuntu OVA image from https://cloud-images.ubuntu.com/releases/focal/release ([direct link](https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.ova))
+
+Alternatively, daily builds are available at https://cloud-images.ubuntu.com/focal/current/
 
 ## Update VMWare Template to properly support virtual machine `extraConfig`
 As of November 2021, there is an issue that leads to `guestinfo` not being properly passed to cloud-init during startup of the virtual machine for, at least, Ubuntu images. A workaround for this issue is below.
