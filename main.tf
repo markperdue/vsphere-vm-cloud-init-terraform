@@ -5,8 +5,8 @@ provider "vsphere" {
   allow_unverified_ssl = true
 }
 
-resource vsphere_virtual_machine "vm" {
-  count                      = length(var.virtual_machines)
+resource "vsphere_virtual_machine" "vm" {
+  count = length(var.virtual_machines)
 
   name                       = split(".", var.virtual_machines[count.index].fqdn)[0]
   resource_pool_id           = data.vsphere_compute_cluster.this.resource_pool_id
@@ -33,13 +33,23 @@ resource vsphere_virtual_machine "vm" {
     thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
   }
 
-  disk {
-    label            = "disk1"
-    datastore_id     = data.vsphere_datastore.ssd.id
-    size             = 20
-    eagerly_scrub    = false
-    thin_provisioned = false
-    unit_number      = 1
+  #disk {
+  #  label            = "disk1"
+  #  #datastore_id     = data.vsphere_datastore.nvme2.id
+  #  size             = 20
+  #  eagerly_scrub    = false
+  #  thin_provisioned = false
+  #  unit_number      = 1
+  #}
+  dynamic "disk" {
+    for_each = var.addl_disks
+    content {
+      label            = disk.value.label
+      size             = disk.value.size
+      eagerly_scrub    = disk.value.eagerly_scrub
+      thin_provisioned = disk.value.thin_provisioned
+      unit_number      = disk.value.unit_number
+    }
   }
 
   clone {
@@ -49,18 +59,19 @@ resource vsphere_virtual_machine "vm" {
   # uses vmware datasource which requires cloud-init >= 21.3
   # https://cloudinit.readthedocs.io/en/latest/topics/datasources/vmware.html
   extra_config = {
-    "guestinfo.metadata"          = base64encode(templatefile("${path.module}/examples/metadata.tftpl", {
-                                      ip           = var.virtual_machines[count.index].ip,
-                                      gateway      = var.virtual_machines[count.index].gateway,
-                                      nameserver_1 = var.virtual_machines[count.index].nameserver_1
-                                    }))
+    "guestinfo.metadata" = base64encode(templatefile("${path.module}/examples/metadata.tftpl", {
+      ip          = var.virtual_machines[count.index].ip,
+      gateway     = var.virtual_machines[count.index].gateway,
+      nameservers = var.virtual_machines[count.index].nameservers
+    }))
     "guestinfo.metadata.encoding" = "base64"
-    "guestinfo.userdata"          = base64encode(templatefile("${path.module}/${var.userdata_file}", {
-                                      fqdn               = var.virtual_machines[count.index].fqdn,
-                                      user               = var.vm_user,
-                                      group              = var.vm_group,
-                                      ssh_authorized_key = var.ssh_authorized_key
-                                    }))
+    "guestinfo.userdata" = base64encode(templatefile("${path.module}/${var.userdata_file}", {
+      fqdn                = var.virtual_machines[count.index].fqdn,
+      user                = var.vm_user,
+      group               = var.vm_group,
+      timezone            = var.vm_timezone,
+      ssh_authorized_keys = var.ssh_authorized_keys
+    }))
     "guestinfo.userdata.encoding" = "base64"
   }
 }

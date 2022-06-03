@@ -9,5 +9,6 @@ network:
       gateway4: ${gateway}
       nameservers:
         addresses:
-          - ${nameserver_1}
-          - 1.1.1.1
+          %{~ for key in nameservers ~}
+          - ${key}
+          %{~ endfor ~}

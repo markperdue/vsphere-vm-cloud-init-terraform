@@ -78,7 +78,8 @@ Confirm password: <re-enter password>
 21. Click `Close` when the installation is complete
 22. Launch [vCenter UI](https://192.168.2.12)
 23. Add a new `Datacenter`
-24. Add a new `Host` to the previously created `Datacenter`
+24. Add a new `Cluster`
+25. Add a new `Host` to the previously created `Datacenter`
 
 
 # Create DNS record for vCenter

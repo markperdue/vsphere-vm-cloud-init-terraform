@@ -10,13 +10,27 @@ users:
       shell: /bin/bash
       sudo: ALL=(ALL) NOPASSWD:ALL
       ssh_authorized_keys:
-        - ${ssh_authorized_key}
+        %{~ for key in ssh_authorized_keys ~}
+        - ${key}
+        %{~ endfor ~}
 ssh_pwauth: yes
 random_seed:
     file: /dev/urandom
     command: ["pollinate", "-r", "-s", "https://entropy.ubuntu.com"]
     command_required: true
 hostname: ${fqdn}
+timezone: ${timezone}
 manage_etc_hosts: true
 package_update: true
 package_upgrade: true
+device_aliases:
+    ephemeral0: /dev/sdb
+disk_setup:
+    ephemeral0:
+        table_type: gpt
+        layout: true
+        overwrite: true
+fs_setup:
+    - label: ephemeral0
+      filesystem: ext4
+      device: ephemeral0.1

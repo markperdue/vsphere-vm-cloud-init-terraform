@@ -8,11 +8,12 @@ vsphere_datastore  = "nvme"
 vsphere_network    = "VM Network"
 
 # Global template to apply to all virtual machines
-vm_template_name   = "template-ubuntu-20.04-20211207"
-vm_user            = "my_user"
-vm_group           = "my_group"
-ssh_authorized_key = "my_ssh_authorized_key"
-userdata_file      = "examples/ubuntu/userdata.tftpl"
+vm_template_name    = "template-ubuntu-20.04-20211207"
+vm_user             = "my_user"
+vm_group            = "my_group"
+vm_timezone         = "America/Los_Angeles"
+ssh_authorized_keys = ["my_ssh_authorized_key"]
+userdata_file       = "examples/ubuntu/userdata.tftpl"
 
 virtual_machines = [
   {
@@ -21,7 +22,7 @@ virtual_machines = [
     memory       = 6144,
     ip           = "192.168.2.21/24",
     gateway      = "192.168.2.1",
-    nameserver_1 = "192.168.2.1"
+    nameservers = ["192.168.2.1", "1.1.1.1"]
   },
   {
     fqdn         = "c1-node1.lab",
@@ -29,7 +30,7 @@ virtual_machines = [
     memory       = 6144,
     ip           = "192.168.2.31/24",
     gateway      = "192.168.2.1",
-    nameserver_1 = "192.168.2.1"
+    nameservers = ["192.168.2.1", "1.1.1.1"]
   },
   {
     fqdn         = "c1-node2.lab",
@@ -37,7 +38,7 @@ virtual_machines = [
     memory       = 6144,
     ip           = "192.168.2.32/24",
     gateway      = "192.168.2.1",
-    nameserver_1 = "192.168.2.1"
+    nameservers = ["192.168.2.1", "1.1.1.1"]
   },
   {
     fqdn         = "c1-node3.lab",
@@ -45,6 +46,6 @@ virtual_machines = [
     memory       = 4096,
     ip           = "192.168.2.33/24",
     gateway      = "192.168.2.1",
-    nameserver_1 = "192.168.2.1"
+    nameservers = ["192.168.2.1", "1.1.1.1"]
   }
 ]
