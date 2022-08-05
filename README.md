@@ -24,10 +24,26 @@ The main use case of this repo surrounds spinning up Kubernetes virtual machines
 
 # Guide
 1. Install ESXI
-2. [Installing vCenter on ESXi](#installing-vcenter-on-esxi-abridged)
+2. [Installing vCenter on ESXi (Arch linux cli)](#installing-vcenter-on-esxi-arch-linux-cli) or [Installing vCenter on ESXi](#installing-vcenter-on-esxi-abridged)
 3. [Create DNS record for vCenter](#create-dns-record-for-vcenter)
 4. [Create OVF template for vCenter](#create-ovf-template-for-vcenter)
 5. [Run terraform plan](#quickstart)
+
+# Write esxi iso to flash drive
+- `sudo dd bs=4M if=VMware-VMvisor-Installer-7.0U3f-20036589.x86_64.iso of=/dev/sda`
+
+# Installing vCenter on ESXi (Arch linux cli)
+- Install ovftool from https://customerconnect.vmware.com/downloads/get-download?downloadGroup=OVFTOOL443&download=true&fileId=43493035a4d43d3306fdb7c6ee61df29&uuId=edea95e1-2486-4298-afe6-28099de84bd6
+- Install libcrypt `yay -S libxcrypt-compat`
+- Run config validators (with replacement of your config json file based off of examples/vsphere-cli.json)
+    ```
+    ./vcsa-deploy install --accept-eula --acknowledge-ceip --verify-template-only ./local/vsphere-cli.json
+    ./vcsa-deploy install --accept-eula --acknowledge-ceip --precheck-only ./local/vsphere-cli.json
+    ```
+- Install (with replacement of your config json file based off of examples/vsphere-cli.json)
+    ```
+    ./vcsa-deploy install --accept-eula --acknowledge-ceip ./local/vsphere-cli.json
+    ```
 
 
 # Installing vCenter on ESXi (abridged)
