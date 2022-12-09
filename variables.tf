@@ -53,6 +53,12 @@ variable "vm_timezone" {
   type        = string
 }
 
+variable "vm_disk_size" {
+  description = "The default disk size for the vm."
+  type        = number
+  default     = 10
+}
+
 variable "ssh_authorized_keys" {
   description = "List of ssh authorized key entry to add to the vm."
   type        = list(string)

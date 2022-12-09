@@ -28,19 +28,11 @@ resource "vsphere_virtual_machine" "vm" {
 
   disk {
     label            = "disk0"
-    size             = data.vsphere_virtual_machine.template.disks.0.size
+    size             = var.vm_disk_size
     eagerly_scrub    = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
     thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
   }
 
-  #disk {
-  #  label            = "disk1"
-  #  #datastore_id     = data.vsphere_datastore.nvme2.id
-  #  size             = 20
-  #  eagerly_scrub    = false
-  #  thin_provisioned = false
-  #  unit_number      = 1
-  #}
   dynamic "disk" {
     for_each = var.addl_disks
     content {

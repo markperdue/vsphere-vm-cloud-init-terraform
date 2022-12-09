@@ -12,8 +12,8 @@ data "vsphere_datastore" "this" {
   datacenter_id = data.vsphere_datacenter.this.id
 }
 
-data "vsphere_datastore" "nvme2" {
-  name          = "nvme2"
+data "vsphere_datastore" "datastore1" {
+  name          = "datastore1"
   datacenter_id = data.vsphere_datacenter.this.id
 }
 
