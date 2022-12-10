@@ -25,36 +25,36 @@ virtual_machines = [
     gateway      = "192.168.2.1",
     nameservers = ["192.168.2.1", "1.1.1.1"]
   },
-  # {
-  #   fqdn         = "c1-node1.lab",
-  #   cpu          = 2,
-  #   memory       = 4096,
-  #   ip           = "192.168.2.31/24",
-  #   gateway      = "192.168.2.1",
-  #   nameservers = ["192.168.2.1", "1.1.1.1"]
-  # },
-  # {
-  #   fqdn         = "c1-node2.lab",
-  #   cpu          = 2,
-  #   memory       = 4096,
-  #   ip           = "192.168.2.32/24",
-  #   gateway      = "192.168.2.1",
-  #   nameservers = ["192.168.2.1", "1.1.1.1"]
-  # },
-  # {
-  #   fqdn         = "c1-node3.lab",
-  #   cpu          = 2,
-  #   memory       = 4096,
-  #   ip           = "192.168.2.33/24",
-  #   gateway      = "192.168.2.1",
-  #   nameservers = ["192.168.2.1", "1.1.1.1"]
-  # }
+  {
+    fqdn         = "c1-node1.lab",
+    cpu          = 2,
+    memory       = 4096,
+    ip           = "192.168.2.31/24",
+    gateway      = "192.168.2.1",
+    nameservers = ["192.168.2.1", "1.1.1.1"]
+  },
+  {
+    fqdn         = "c1-node2.lab",
+    cpu          = 2,
+    memory       = 4096,
+    ip           = "192.168.2.32/24",
+    gateway      = "192.168.2.1",
+    nameservers = ["192.168.2.1", "1.1.1.1"]
+  },
+  {
+    fqdn         = "c1-node3.lab",
+    cpu          = 2,
+    memory       = 4096,
+    ip           = "192.168.2.33/24",
+    gateway      = "192.168.2.1",
+    nameservers = ["192.168.2.1", "1.1.1.1"]
+  }
 ]
 
 addl_disks = [
   {
     label            = "disk1",
-    size             = 50,
+    size             = 10,
     eagerly_scrub    = false,
     thin_provisioned = false,
     unit_number      = 1

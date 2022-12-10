@@ -1,17 +1,18 @@
 # Example building an Ubuntu virtual machine.
 vsphere_user       = "administrator@vsphere.local"
-vsphere_password   = "password_here"
-vsphere_server     = "server_here"
+vsphere_password   = "changethisP455word!"
+vsphere_server     = "vcsa-01.lab"
 vsphere_datacenter = "Datacenter"
 vsphere_cluster    = "Cluster"
-vsphere_datastore  = "nvme"
+vsphere_datastore  = "datastore1"
 vsphere_network    = "VM Network"
 
 # Global template to apply to all virtual machines
-vm_template_name    = "template-ubuntu-20.04-20211207"
-vm_user             = "my_user"
-vm_group            = "my_group"
+vm_template_name    = "ubuntu-jammy-22.04-cloudimg-20221201"
+vm_user             = "appuser"
+vm_group            = "appowner"
 vm_timezone         = "America/Los_Angeles"
+vm_disk_size        = 20
 ssh_authorized_keys = ["my_ssh_authorized_key"]
 userdata_file       = "examples/ubuntu/userdata.tftpl"
 
