@@ -1,6 +1,6 @@
 Walkthrough for creating virtual machines for a Kubernetes cluster using the [vSphere](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs) terraform provider.
 
-This is part 2 of a multi-part series. Part 1 is available at [Using VMWare ESXi 8 and vCenter 8 in your homelab for free](https://perdue.dev/using-vmware-esxi-8-and-vcenter-8-in-your-homelab-for-free/)
+This is part 2 of a multi-part series. Part 1 is available at [Using VMWare ESXi 8 and vCenter 8 in your homelab for free](https://perdue.dev/using-vmware-esxi-8-and-vcenter-8-in-your-homelab-for-free/). Part 3 is available at [Installing your Kubernetes homelab cluster in minutes with Ansible](https://perdue.dev/installing-your-kubernetes-homelab-cluster-in-minutes-with-ansible/)
 
 # The goal of this series
 This series is for you if you are interested in making management of your homelab something more turn-key. It is also for you if you are looking for something to help get hands-on experience to move from hobby tinkering to tools used in the workplace for managing infrastructure like Kubernetes clusters.
@@ -212,4 +212,4 @@ Looking good!
 # Wrap Up
 At this point, all 4 virtual machines are prepped and ready for the next part of the series where we install Kubernetes using ansible.
 
-Catch the next part of the series at TODO_ONCE_PUBLISHED
+Catch the next part of the series at [Installing your Kubernetes homelab cluster in minutes with Ansible](https://perdue.dev/installing-your-kubernetes-homelab-cluster-in-minutes-with-ansible/)

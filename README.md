@@ -3,7 +3,7 @@ A terraform plan that spins up virtual machines on an ESXi host using vCenter. T
 
 The main use case of this repo surrounds spinning up Kubernetes virtual machines to be later configured by Ansible playbooks.
 
-A guide for using this repo to spin up a Kubernetes cluster is available at TODO
+A guide for using this repo to spin up a Kubernetes cluster is available at [Creating VMs for Kubernetes using Terraform and VMWare vSphere](https://perdue.dev/creating-vms-for-kubernetes-using-terraform-and-vmware-vsphere/)
 
 
 # Features
@@ -29,10 +29,12 @@ A guide for using this repo to spin up a Kubernetes cluster is available at TODO
 terraform init
 terraform workspace new kubernetes
 terraform apply --var-file=examples/kubernetes/terraform.tfvars
+```
 
-
+# Destroy kubernetes vms
+```
+terraform workspace select kubernetes
 terraform destroy --var-file=examples/kubernetes/terraform.tfvars
-
 ```
 
 # Install single vm
